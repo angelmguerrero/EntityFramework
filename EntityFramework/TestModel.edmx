@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TestModel.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="SP_RASTREABILIDADMATRIZ" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="COQUETA">
+          <Parameter Name="PA_CBPARTNER_ID_MATRIZ" Type="varchar2" Mode="In" />
+          <Parameter Name="PA_TIENDA" Type="varchar2" Mode="In" />
+        </Function>
+        <EntityContainer Name="TestModelStoreContainer" />
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="TestEntities" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="SP_RASTREABILIDADMATRIZ" ReturnType="Collection(TestModel.SP_RASTREABILIDADMATRIZ_Result)">
+            <Parameter Name="PA_CBPARTNER_ID_MATRIZ" Mode="In" Type="String" />
+            <Parameter Name="PA_TIENDA" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="SP_RASTREABILIDADMATRIZ_Result">
+          <Property Type="String" Name="SEMANA" Nullable="true" />
+          <Property Type="Decimal" Name="TOTAL_SEMANA" Nullable="true" />
+          <Property Type="Decimal" Name="TOTAL_SURTIDO" Nullable="true" />
+          <Property Type="Decimal" Name="TOTAL_SURTIDO_PORC" Nullable="true" />
+          <Property Type="Decimal" Name="TOTAL_SURTIDO_ANTES" Nullable="true" />
+          <Property Type="Decimal" Name="TOTAL_SURTIDO_ANTES_PORC" Nullable="true" />
+          <Property Type="Decimal" Name="TOTAL_SURTIDO_DESPUES" Nullable="true" />
+          <Property Type="Decimal" Name="TOTAL_SURTIDO_DESPUES_PORC" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TestModelStoreContainer" CdmEntityContainer="TestEntities" >
+          <FunctionImportMapping FunctionImportName="SP_RASTREABILIDADMATRIZ" FunctionName="TestModel.Store.SP_RASTREABILIDADMATRIZ" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestModel.SP_RASTREABILIDADMATRIZ_Result">
+                <ScalarProperty Name="SEMANA" ColumnName="SEMANA" />
+                <ScalarProperty Name="TOTAL_SEMANA" ColumnName="TOTAL_SEMANA" />
+                <ScalarProperty Name="TOTAL_SURTIDO" ColumnName="TOTAL_SURTIDO" />
+                <ScalarProperty Name="TOTAL_SURTIDO_PORC" ColumnName="TOTAL_SURTIDO_PORC" />
+                <ScalarProperty Name="TOTAL_SURTIDO_ANTES" ColumnName="TOTAL_SURTIDO_ANTES" />
+                <ScalarProperty Name="TOTAL_SURTIDO_ANTES_PORC" ColumnName="TOTAL_SURTIDO_ANTES_PORC" />
+                <ScalarProperty Name="TOTAL_SURTIDO_DESPUES" ColumnName="TOTAL_SURTIDO_DESPUES" />
+                <ScalarProperty Name="TOTAL_SURTIDO_DESPUES_PORC" ColumnName="TOTAL_SURTIDO_DESPUES_PORC" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
